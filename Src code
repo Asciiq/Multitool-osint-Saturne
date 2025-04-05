@@ -1,0 +1,1213 @@
+@echo off
+title Saturne - By Ehqie V1.5
+chcp 65001 >nul
+color e
+:start
+cd files
+
+:menu
+call :banner
+for /f %%A in ('"prompt $H &echo on &for %%B in (1) do rem"') do set BS=%%A
+echo.
+echo                 [01]Username                        [11]Geoip Lookup                    [21]Subdomain Finder
+echo                 [02]Email                           [12]Reverse Image                   [22]Wayback Scanner
+echo                 [03]Iplookup                        [13]Http Headers                    [23]Dox Creator
+echo                 [04]Ip Scanner                      [14]Metadata Viewer                 [24]HTTP Status Code Checker
+echo                 [05]Website Scanner                 [15]PDF Metadata Viewer             [25]Email Verifier
+echo                 [06]Port Scanner                    [16]Robots.txt Analyzer             [26]Phone Number
+echo                 [07]Dns Lookup                      [17]Ssl Checker                     [27]History IP
+echo                 [08]Reverse Ip                      [18]Domain Reputation               [28]Username Leak Checker
+echo                 [09]Metadata Extractor              [19]WHOIS Domain Lookup             [29]Password Strength Checker
+echo                 [10]Shodan Search                   [20]HTML Source                     [30]Crédits
+echo.
+echo.
+set /p input=.%BS% ███════^>
+if /i %input% EQU 1 goto start_usernames
+if /i %input% EQU 2 goto osint_email
+if /i %input% EQU 3 goto iplookup
+if /i %input% EQU 4 goto ipscanner
+if /i %input% EQU 5 goto website_scanner
+if /i %input% EQU 6 goto portscanner
+if /i %input% EQU 7 goto dns_lookup
+if /i %input% EQU 8 goto reverse_ip
+if /i %input% EQU 9 goto metadata_extractor
+if /i %input% EQU 10 goto shodan_search
+if /i %input% EQU 11 goto geoip_lookup
+if /i %input% EQU 12 goto reverse_image
+if /i %input% EQU 13 goto http_headers
+if /i %input% EQU 14 goto metadata_viewer
+if /i %input% EQU 15 goto pdf_info
+if /i %input% EQU 16 goto robots_txt
+if /i %input% EQU 17 goto ssl_checker
+if /i %input% EQU 18 goto domain_reputation
+if /i %input% EQU 19 goto whois_lookup
+if /i %input% EQU 20 goto html_source
+if /i %input% EQU 21 goto subdomain_finder
+if /i %input% EQU 22 goto wayback_scanner
+if /i %input% EQU 23 goto dox_creator
+if /i %input% EQU 24 goto http_status
+if /i %input% EQU 25 goto email_verifier
+if /i %input% EQU 26 goto phone_validator
+if /i %input% EQU 27 goto ip_history
+if /i %input% EQU 28 goto username_leak
+if /i %input% EQU 29 goto leaked_password
+if /i %input% EQU 30 goto rainbow_credits
+if /i %input% GEQ 31 if /i %input% LEQ 99 goto not_ready
+echo.
+pause
+
+:start_usernames
+cls
+echo.
+echo       [1] WhatMyName
+echo       [2] NameCheckr
+echo       [3] NameCheckUp
+echo       [4] CheckUsernames
+echo       [5] Social Searcher
+echo       [6] KnowEm
+echo       [7] Sherlock (GitHub)
+echo       [8] Maigret (GitHub)
+echo       [9] UserSearch.org
+echo      [10] WhatsMyName
+echo.
+echo      [0] Retour
+set /p choice=Choix ^>
+
+if "%choice%"=="1" (
+    start https://whatmyname.app
+    goto menu
+)
+if "%choice%"=="2" (
+    start https://www.namecheckr.com/
+    goto menu
+)
+if "%choice%"=="3" (
+    start https://namecheckup.com
+    goto menu
+)
+if "%choice%"=="4" (
+    start https://checkusernames.com
+    goto menu
+)
+if "%choice%"=="5" (
+    start https://www.social-searcher.com
+    goto menu
+)
+if "%choice%"=="6" (
+    start https://knowem.com
+    goto menu
+)
+if "%choice%"=="7" (
+    start https://github.com/sherlock-project/sherlock
+    goto menu
+)
+if "%choice%"=="8" (
+    start https://github.com/soxoj/maigret
+    goto menu
+)
+if "%choice%"=="9" (
+    start https://usersearch.org
+    goto menu
+)
+if "%choice%"=="10" (
+    start https://www.whatsmyname.app/
+    goto menu
+)
+if "%choice%"=="0" goto menu
+
+goto start_usernames
+
+
+:osint_email
+cls
+echo.
+echo       [38;5;230m[1] HaveIBeenPwned
+echo       [38;5;230m[2] EmailRep
+echo       [38;5;230m[3] Hunter.io
+echo       [38;5;230m[4] EmailFormat
+echo       [38;5;230m[5] Holehe
+echo       [38;5;230m[6] SocialScan
+echo       [38;5;230m[7] Epios
+echo.
+echo       [38;5;230m[0] Retour
+set /p email_choice=Choix ^>
+
+if "%email_choice%"=="1" (
+    start https://haveibeenpwned.com
+    goto menu
+)
+if "%email_choice%"=="2" (
+    start https://emailrep.io
+    goto menu
+)
+if "%email_choice%"=="3" (
+    start https://hunter.io
+    goto menu
+)
+if "%email_choice%"=="4" (
+    start https://emailformat.com
+    goto menu
+)
+if "%email_choice%"=="5" (
+    start https://github.com/megadose/holehe
+    goto menu
+)
+if "%email_choice%"=="6" (
+    start https://github.com/iojw/socialscan
+    goto menu
+)
+if "%email_choice%"=="7" (
+    start https://epieos.com/
+    goto menu
+)
+if "%email_choice%"=="0" goto menu
+
+goto osint_email
+
+:iplookup
+cls
+echo.
+set /p target_ip= Enter the IP address to be analyzed : 
+
+echo.
+echo  [38;5;202m═══════════════════════════════════════
+echo         [38;5;202mRetrieving IP Info...
+echo  [38;5;202m═══════════════════════════════════════
+echo.
+
+curl -s "http://ip-api.com/line/%target_ip%" > temp.txt
+
+setlocal enabledelayedexpansion
+set i=0
+for /f "delims=" %%a in (temp.txt) do (
+    set /a i+=1
+    set "line[!i!]=%%a"
+)
+
+echo  [38;5;230mIP        : %target_ip%
+echo  [38;5;230mPays      : !line[2]!
+echo  [38;5;230mRégion    : !line[4]!
+echo  [38;5;230mVille     : !line[6]!
+echo  [38;5;230mFAI       : !line[11]!
+echo  [38;5;230mCode Post : !line[8]!
+echo  [38;5;230mLatitude  : !line[10]!
+echo  [38;5;230mLongitude : !line[9]!
+echo.
+
+del temp.txt
+pause
+goto menu
+
+:ipscanner
+cls
+color d
+echo.
+echo [38;5;202m╔══════════════════════════════════════════════════════╗
+echo [38;5;202m║                [38;5;230mIP SCANNER                  ║
+echo [38;5;202m╚══════════════════════════════════════════════════════╝
+echo.
+
+set /p target= Between an IP or a domain name : 
+
+echo.
+echo ▬▬ [1] Ping de %target% ▬▬
+ping %target%
+echo.
+echo ▬▬ [2] Traceroute de %target% ▬▬
+tracert %target%
+echo.
+echo ▬▬ [3] Whois (ouvre dans le navigateur) ▬▬
+start https://who.is/whois-ip/ip-address/%target%
+
+pause
+goto menu
+
+:website_scanner
+cls
+echo.
+echo  [38;5;202m╔================================================╗
+echo [38;5;202m ║              Website Scanner                   ║
+echo  [38;5;202m╚================================================╝
+echo.
+set /p target_domain=Enter a domain name (ex: example.com) ^>
+
+where nslookup >nul 2>&1
+if errorlevel 1 (
+    echo [38;5;230mError : nslookup is not available on this system.
+    pause
+    goto menu
+)
+
+echo.
+echo  [38;5;230mDomain IP Lookup...
+echo.
+
+nslookup %target_domain% > "%TEMP%\dnscheck.txt" 2>nul
+
+if not exist "%TEMP%\dnscheck.txt" (
+    echo [38;5;230mError : The nslookup command failed.
+    pause
+    goto menu
+)
+
+set "target_ip="
+for /f "tokens=2 delims=:" %%i in ('findstr /R /C:"Address: " "%TEMP%\dnscheck.txt" ^| findstr /V "127.0.0.1"') do (
+    set "target_ip=%%i"
+)
+
+del "%TEMP%\dnscheck.txt"
+set target_ip=%target_ip: =%
+
+if "%target_ip%"=="" (
+    echo [38;5;230mError : Unable to resolve the domain.
+    pause
+    goto menu
+)
+
+echo.
+echo [38;5;230mIP found : %target_ip%
+echo.
+echo [38;5;230mRetrieving information...
+echo.
+
+curl -s "https://ipinfo.io/%target_ip%/json" > "%TEMP%\webinfo.json"
+
+if not exist "%TEMP%\webinfo.json" (
+    echo [38;5;230mError : Failed to retrieve the info.
+    pause
+    goto menu
+)
+
+:: Ne pas effacer l’écran ici pour garder les infos visibles
+echo.
+echo  [38;5;202m╔================================================╗
+echo                Results for : %target_domain%                 
+echo  [38;5;202m╚================================================╝
+echo.
+
+type "%TEMP%\webinfo.json" | findstr /i /c:"\"ip\":" /c:"\"hostname\":" /c:"\"city\":" /c:"\"region\":" /c:"\"country\":" /c:"\"org\":" /c:"\"loc\":"
+
+echo.
+pause
+del "%TEMP%\webinfo.json"
+goto menu
+
+:portscanner
+cls
+echo.
+echo  [38;5;202m╔══════════════════════════════════════════════════════╗
+echo  [38;5;202m║                     PORT SCANNER                     ║
+echo  [38;5;202m╚══════════════════════════════════════════════════════╝
+echo.
+set /p target=Enter an IP or domain to scan : 
+set /p ports=Enter the ports to scan (ex: 21,22,80,443) : 
+
+echo.
+echo [38;5;230m[*] Scanning...
+echo.
+
+:: Génère un script PowerShell temporaire
+set "ps_script=%TEMP%\scan_ports.ps1"
+> "%ps_script%" echo $ports = "%ports%".Split(",")
+>> "%ps_script%" echo foreach ($port in $ports) {
+>> "%ps_script%" echo     $result = Test-NetConnection -ComputerName "%target%" -Port $port -InformationLevel Quiet
+>> "%ps_script%" echo     if ($result) {
+>> "%ps_script%" echo         Write-Host "Port $port : OUVERT"
+>> "%ps_script%" echo     } else {
+>> "%ps_script%" echo         Write-Host "Port $port : FERME"
+>> "%ps_script%" echo     }
+>> "%ps_script%" echo }
+
+powershell -ExecutionPolicy Bypass -File "%ps_script%"
+
+del "%ps_script%"
+echo.
+pause
+goto menu
+
+:dns_lookup
+cls
+color D
+echo.
+echo [38;5;202m╔===============================================╗
+echo [38;5;202m║                DNS Lookup                     ║
+echo [38;5;202m╚===============================================╝
+echo.
+set /p domain_dns=Enter a domain ^>
+
+echo.
+echo [38;5;230mSearching for DNS records...
+echo.
+
+nslookup -type=any %domain_dns%
+echo.
+pause
+goto menu
+
+:reverse_ip
+cls
+color D
+echo.
+echo [38;5;202m╔==============================================╗
+echo [38;5;202m║               Reverse IP Lookup              ║
+echo [38;5;202m╚==============================================╝
+echo.
+set /p rev_ip=Enter an IP address or domain ^>
+
+echo.
+echo [38;5;230mOuse of the online service...
+start https://viewdns.info/reverseip/?host=%rev_ip%&t=1
+echo.
+pause
+goto menu
+
+:metadata_extractor
+cls
+color D
+echo.
+echo  [38;5;202m╔==============================================╗
+echo  [38;5;202m║              Metadata Extractor              ║
+echo  [38;5;202m╚==============================================╝
+echo.
+echo  [38;5;230mThis tool opens an online service allowing
+echo  [38;5;230mExtract metadata from an image (EXIF).
+echo.
+pause
+start https://www.exif.tools
+goto menu
+
+:shodan_search
+cls
+color D
+echo.
+echo  [38;5;202m╔==============================================╗
+echo  [38;5;202m║                Shodan Search                 ║
+echo  [38;5;202m╚==============================================╝
+echo.
+echo  [38;5;230mShodan is a device search engine
+echo  [38;5;230mconnected to the Internet (IoT, cameras, servers, etc.).
+echo.
+pause
+start https://www.shodan.io
+goto menu
+
+:geoip_lookup
+cls
+color E
+echo.
+echo  [38;5;202m╔==============================================╗
+echo  [38;5;202m║              Advanced GeoIP Lookup           ║
+echo  [38;5;202m╚==============================================╝
+echo.
+echo  [38;5;230mThis option opens an IP geolocation tool
+echo  [38;5;230mwith map, ASN, hostnames, timezone...
+echo.
+pause
+start https://www.iplocation.net
+goto menu
+
+:reverse_image
+cls
+color D
+echo.
+echo  [38;5;202m╔==============================================╗
+echo  [38;5;202m║          Reverse Image Search                ║
+echo  [38;5;202m╚==============================================╝
+echo.
+echo  [38;5;230mChoose a search engine :
+echo.
+echo    [38;5;230m[1] Google Reverse Image
+echo    [38;5;230m[2] TinEye
+echo    [38;5;230m[3] Yandex Images
+echo    [38;5;230m[0] Retour
+echo.
+set /p image_choice=Choix ^>
+
+if "%image_choice%"=="1" (
+    start https://images.google.com
+    goto menu
+)
+if "%image_choice%"=="2" (
+    start https://tineye.com
+    goto menu
+)
+if "%image_choice%"=="3" (
+    start https://yandex.com/images/
+    goto menu
+)
+if "%image_choice%"=="0" goto menu
+
+goto reverse_image
+
+:http_headers
+cls
+color D
+echo.
+echo  [38;5;202m╔═══════════════════════════════════════════════════╗
+echo  [38;5;202m║               HTTP Headers Scanner                ║
+echo  [38;5;202m╚═══════════════════════════════════════════════════╝
+echo.
+set /p target_site=Enter a URL (ex: https://example.com) ^>
+
+echo.
+echo  [38;5;230m▬▬ Retrieving HTTP headers ▬▬
+echo.
+
+curl -I %target_site%
+echo.
+pause
+goto menu
+
+:metadata_viewer
+cls
+color D
+echo.
+echo  [38;5;202m╔═══════════════════════════════════════════════════╗
+echo  [38;5;202m║                   Metadata Viewer                 ║
+echo  [38;5;202m╚═══════════════════════════════════════════════════╝
+echo.
+echo  [38;5;230mThis option opens a site to parse the metadata of a file.
+echo.
+pause
+start https://www.metadata2go.com/
+goto menu
+
+:pdf_info
+cls
+color D
+echo.
+echo  [38;5;202m╔════════════════════════════════════════════════════╗
+echo  [38;5;202m║                 PDF Metadata Viewer               ║
+echo  [38;5;202m╚════════════════════════════════════════════════════╝
+echo.
+echo  [38;5;230mThis module lets you extract metadata from PDF files.
+echo  [38;5;230mMake sure your PDF is local and accessible.
+echo.
+set /p pdf_path=Enter the full path to your PDF file: 
+echo.
+
+:: Check if file exists
+if not exist "%pdf_path%" (
+    echo [38;5;196mError: File not found.
+    pause
+    goto menu
+)
+
+:: Use PowerShell to extract metadata
+powershell -Command "& {
+    try {
+        Add-Type -AssemblyName System.Windows.Forms
+        $reader = New-Object System.IO.FileStream('%pdf_path%', 'Open', 'Read')
+        $bytes = New-Object byte[] ($reader.Length)
+        $reader.Read($bytes, 0, $reader.Length) | Out-Null
+        $reader.Close()
+        $text = [System.Text.Encoding]::ASCII.GetString($bytes)
+        if ($text -match 'Title\s*\((.*?)\)') { Write-Host 'Title: ' $matches[1] }
+        if ($text -match 'Author\s*\((.*?)\)') { Write-Host 'Author: ' $matches[1] }
+        if ($text -match 'Producer\s*\((.*?)\)') { Write-Host 'Producer: ' $matches[1] }
+        if ($text -match 'CreationDate\s*\((.*?)\)') { Write-Host 'Created: ' $matches[1] }
+    } catch {
+        Write-Host 'Could not read PDF metadata.'
+    }
+}"
+echo.
+pause
+goto menu
+
+:robots_txt
+cls
+color D
+echo.
+echo  [38;5;202m╔═══════════════════════════════════════════════════╗
+echo  [38;5;202m║                Robots.txt Analyzer                ║
+echo  [38;5;202m╚═══════════════════════════════════════════════════╝
+echo.
+set /p robots_domain=Enter a domain (ex: example.com) ^>
+
+echo.
+echo [38;5;230mRetrieving robots.txt from https://%robots_domain%...
+echo.
+
+curl -s https://%robots_domain%/robots.txt > "%TEMP%\robots.txt"
+
+if not exist "%TEMP%\robots.txt" (
+    echo [38;5;196mError: Could not retrieve robots.txt
+    pause
+    goto menu
+)
+
+echo.
+echo [38;5;230m========== robots.txt content ==========
+echo.
+
+type "%TEMP%\robots.txt"
+
+echo.
+del "%TEMP%\robots.txt"
+pause
+goto menu
+
+:ssl_checker
+cls
+color D
+echo.
+echo  [38;5;202m╔══════════════════════════════════════════════════╗
+echo  [38;5;202m║              SSL/TLS Certificate Checker         ║
+echo  [38;5;202m╚══════════════════════════════════════════════════╝
+echo.
+set /p domain_ssl=Enter a domain name (ex: example.com) ^>
+
+echo.
+echo  [38;5;230m[*] Fetching SSL certificate info for %domain_ssl% ...
+echo.
+
+:: Utilisation de PowerShell pour récupérer les infos SSL
+set "ps_script=%TEMP%\ssl_check.ps1"
+> "%ps_script%" echo try {
+>> "%ps_script%" echo     $tcpClient = New-Object Net.Sockets.TcpClient("%domain_ssl%", 443)
+>> "%ps_script%" echo     $sslStream = New-Object Net.Security.SslStream($tcpClient.GetStream(), $false, ({ $true }))
+>> "%ps_script%" echo     $sslStream.AuthenticateAsClient("%domain_ssl%")
+>> "%ps_script%" echo     $cert = $sslStream.RemoteCertificate
+>> "%ps_script%" echo     $cert2 = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2 $cert
+>> "%ps_script%" echo     Write-Host "Subject         : " $cert2.Subject
+>> "%ps_script%" echo     Write-Host "Issuer          : " $cert2.Issuer
+>> "%ps_script%" echo     Write-Host "Valid From      : " $cert2.NotBefore
+>> "%ps_script%" echo     Write-Host "Valid Until     : " $cert2.NotAfter
+>> "%ps_script%" echo     Write-Host "Thumbprint      : " $cert2.Thumbprint
+>> "%ps_script%" echo     Write-Host "Serial Number   : " $cert2.SerialNumber
+>> "%ps_script%" echo     Write-Host "Signature Algo  : " $cert2.SignatureAlgorithm.FriendlyName
+>> "%ps_script%" echo     Write-Host "Public Key Size : " $cert2.PublicKey.Key.KeySize
+>> "%ps_script%" echo     $tcpClient.Close()
+>> "%ps_script%" echo } catch {
+>> "%ps_script%" echo     Write-Host "`n[!] Error retrieving SSL certificate info."
+>> "%ps_script%" echo }
+
+powershell -ExecutionPolicy Bypass -File "%ps_script%"
+
+del "%ps_script%"
+echo.
+pause
+goto menu
+
+:domain_reputation
+cls
+color D
+echo.
+echo  [38;5;202m╔════════════════════════════════════════════════════╗
+echo  [38;5;202m║             Domain Reputation Checker              ║
+echo  [38;5;202m╚════════════════════════════════════════════════════╝
+echo.
+set /p domain_check=Enter a domain to check reputation (ex: example.com) ^>
+
+echo.
+echo  [38;5;230mOpening domain reputation tools in your browser...
+echo.
+
+start https://transparencyreport.google.com/safe-browsing/search?url=%domain_check%
+start https://www.virustotal.com/gui/domain/%domain_check%/detection
+start https://urlscan.io/domain/%domain_check%
+
+echo.
+echo  [38;5;230mYou can analyze results from:
+echo     - Google Safe Browsing
+echo     - VirusTotal
+echo     - URLScan
+echo.
+pause
+goto menu
+
+:whois_lookup
+cls
+color D
+echo.
+echo [38;5;202m╔══════════════════════════════════════════════════╗
+echo [38;5;202m║                WHOIS Domain Lookup              ║
+echo [38;5;202m╚══════════════════════════════════════════════════╝
+echo.
+set /p whois_domain=Enter a domain name (ex: example.com) ^>
+
+echo.
+echo [38;5;230mOpening WHOIS lookup services for %whois_domain%...
+echo.
+
+start https://who.is/whois/%whois_domain%
+start https://www.whois.com/whois/%whois_domain%
+start https://lookup.icann.org/en/lookup?search=%whois_domain%
+
+echo.
+pause
+goto menu
+
+:html_source
+cls
+color D
+echo.
+echo  [38;5;202m╔═════════════════════════════════════════════════════╗
+echo  [38;5;202m║               HTML Source Code Viewer               ║
+echo  [38;5;202m╚═════════════════════════════════════════════════════╝
+echo.
+set /p html_target=Enter a website URL (ex: https://example.com) ^>
+
+echo.
+echo  [38;5;230m[*] Retrieving HTML source from %html_target%...
+echo.
+
+curl -s "%html_target%" > "%TEMP%\source.html"
+
+if not exist "%TEMP%\source.html" (
+    echo [38;5;196mError: Failed to retrieve the source code.
+    pause
+    goto menu
+)
+
+echo.
+echo [38;5;230m========== Source Code Preview ==========
+echo.
+
+type "%TEMP%\source.html" | more
+
+echo.
+pause
+del "%TEMP%\source.html"
+goto menu
+
+:subdomain_finder
+cls
+color D
+echo.
+echo  [38;5;202m╔═══════════════════════════════════════════════════╗
+echo  [38;5;202m║                 Subdomain Finder                  ║
+echo  [38;5;202m╚═══════════════════════════════════════════════════╝
+echo.
+set /p domain=Enter a domain (ex: example.com) ^>
+
+echo.
+echo [38;5;230m[*] Searching for subdomains of %domain%...
+echo.
+
+curl -s "https://rapiddns.io/subdomain/%domain%?full=1" > "%TEMP%\subs.html"
+
+:: Check if data exists
+findstr /i "<td>" "%TEMP%\subs.html" >nul
+if errorlevel 1 (
+    echo [38;5;196mNo subdomains found or request failed.
+    del "%TEMP%\subs.html"
+    pause
+    goto menu
+)
+
+echo.
+echo [38;5;202mDiscovered subdomains:
+echo [38;5;230m---------------------------------
+findstr /i "<td>" "%TEMP%\subs.html" | findstr /v "https://rapiddns.io" | findstr /r "[a-zA-Z0-9.-]*\.%domain%"
+echo [38;5;230m---------------------------------
+
+del "%TEMP%\subs.html"
+echo.
+pause
+goto menu
+
+:wayback_scanner
+cls
+color D
+echo.
+echo [38;5;202m╔══════════════════════════════════════════════════════╗
+echo [38;5;202m║               Wayback Machine Scanner                ║
+echo [38;5;202m╚══════════════════════════════════════════════════════╝
+echo.
+set /p wayback_url=Enter a domain or full URL to check ^>
+
+echo.
+echo [38;5;230m[*] Checking archived snapshots...
+echo.
+
+curl -s "http://archive.org/wayback/available?url=%wayback_url%" > "%TEMP%\wayback.json"
+
+if not exist "%TEMP%\wayback.json" (
+    echo [38;5;196mError: Failed to get data from Wayback Machine.
+    pause
+    goto menu
+)
+
+findstr /i /c:"\"available\":" "%TEMP%\wayback.json" | findstr /i "true" >nul
+if %errorlevel%==0 (
+    echo [38;5;10m✓ Archive found!
+    findstr /i /c:"\"url\":" "%TEMP%\wayback.json"
+) else (
+    echo [38;5;196mNo snapshot available for this URL.
+)
+
+del "%TEMP%\wayback.json"
+echo.
+pause
+goto menu
+
+:dox_creator
+cls
+color 4
+echo.
+echo  ╔══════════════════════════════════════════════════════╗
+echo  ║                     DOX CREATOR                      ║
+echo  ╚══════════════════════════════════════════════════════╝
+echo.
+
+:: Retour au dossier racine (1 niveau en arrière depuis /files)
+cd..
+
+:: Crée le dossier output s’il n’existe pas
+if not exist "output" mkdir output
+
+:: Retourne dans /files pour poser les questions
+cd files
+
+set /p name=Full Name: 
+set /p alias=Nickname / Alias: 
+set /p birthdate=Date of Birth: 
+set /p age=Age: 
+set /p gender=Gender: 
+set /p nationality=Nationality: 
+
+set /p address=Full Address: 
+set /p zipcode=Postal Code: 
+set /p city=City: 
+set /p region=Region / Department: 
+set /p country=Country: 
+set /p ip=Known IP Address (if any): 
+set /p gps=GPS Location (if any): 
+
+set /p phone=Phone Number: 
+set /p email=Email Address: 
+set /p facebook=Facebook: 
+set /p insta=Instagram: 
+set /p twitter=Twitter / X: 
+set /p snap=Snapchat: 
+set /p tiktok=TikTok: 
+set /p discord=Discord: 
+set /p othersocial=Other Socials: 
+
+set /p school=School / University: 
+set /p work=Company / Workplace: 
+set /p job=Job Title: 
+set /p hours=Working Hours / Schedule: 
+
+set /p family=Parents: 
+set /p siblings=Siblings: 
+set /p roommates=Roommates: 
+set /p mailbox=Mailbox Name: 
+set /p pets=Pets: 
+
+set /p car=Car Brand / Model: 
+set /p plate=Plate Number: 
+set /p color=Car Color: 
+set /p parking=Parking Address: 
+
+set /p bank=Bank Name: 
+set /p iban=RIB / IBAN (if any): 
+set /p subs=Subscriptions (Netflix, Amazon...): 
+set /p delivery=Delivery Services Used: 
+
+set /p habits=Habits: 
+set /p presence=Presence Hours / Absences: 
+set /p online=Online Behavior: 
+set /p drama=Rumors / Conflicts: 
+
+:: Définir le nom du fichier de sortie dans le dossier output à la racine
+set "dox_file=..\output\dox_fiche.txt"
+
+(
+echo ======================
+echo      FICHE DOX
+echo ======================
+
+echo 👤 General Information:
+echo ---------------------------
+echo Full Name: %name%
+echo Alias: %alias%
+echo Date of Birth: %birthdate%
+echo Age: %age%
+echo Gender: %gender%
+echo Nationality: %nationality%
+
+echo.
+echo 📍 Address:
+echo ---------------------------
+echo Full Address: %address%
+echo Zip Code: %zipcode%
+echo City: %city%
+echo Region: %region%
+echo Country: %country%
+echo IP Address: %ip%
+echo GPS Location: %gps%
+
+echo.
+echo 📞 Contact:
+echo ---------------------------
+echo Phone: %phone%
+echo Email: %email%
+echo Facebook: %facebook%
+echo Instagram: %insta%
+echo Twitter/X: %twitter%
+echo Snapchat: %snap%
+echo TikTok: %tiktok%
+echo Discord: %discord%
+echo Other: %othersocial%
+
+echo.
+echo 💼 Job / Education:
+echo ---------------------------
+echo School / University: %school%
+echo Company: %work%
+echo Job Title: %job%
+echo Working Hours: %hours%
+
+echo.
+echo 🏠 Family / Roommates:
+echo ---------------------------
+echo Parents: %family%
+echo Siblings: %siblings%
+echo Roommates: %roommates%
+echo Mailbox Name: %mailbox%
+echo Pets: %pets%
+
+echo.
+echo 🚗 Vehicle:
+echo ---------------------------
+echo Car: %car%
+echo Plate: %plate%
+echo Color: %color%
+echo Parking: %parking%
+
+echo.
+echo 💳 Financial:
+echo ---------------------------
+echo Bank: %bank%
+echo IBAN: %iban%
+echo Subscriptions: %subs%
+echo Delivery Services: %delivery%
+
+echo.
+echo 🧠 Others:
+echo ---------------------------
+echo Habits: %habits%
+echo Presence: %presence%
+echo Online Behavior: %online%
+echo Drama / Rumors: %drama%
+
+echo.
+echo ==========================
+echo     ⚠️ PRIVATE USE ONLY
+echo ==========================
+) > "%dox_file%"
+
+echo.
+echo The DOX file has been saved to:
+echo %dox_file%
+echo.
+pause
+goto menu
+
+:http_status
+cls
+color D
+echo.
+echo  [38;5;202m╔════════════════════════════════════════════════════╗
+echo  [38;5;202m║              HTTP Status Code Checker              ║
+echo  [38;5;202m╚════════════════════════════════════════════════════╝
+echo.
+set /p http_target=Enter a website URL (ex: https://example.com) ^>
+
+echo.
+echo  [38;5;230m[*] Checking status code for %http_target%...
+echo.
+
+:: Get only the HTTP status line using curl
+curl -s -o nul -w "HTTP Code: %%{http_code}\n" "%http_target%"
+echo.
+pause
+goto menu
+
+:email_verifier
+cls
+color E
+echo.
+echo  [38;5;202m╔══════════════════════════════════════════════════════════╗
+echo  [38;5;202m║                     EMAIL VERIFIER                       ║
+echo  [38;5;202m╚══════════════════════════════════════════════════════════╝
+echo.
+
+set /p email=Enter an email address to verify: 
+
+echo.
+echo  [38;5;230m[*] Verifying email format...
+echo.
+
+:: Vérifie que l'adresse contient bien un "@"
+echo %email% | findstr "@" >nul
+if errorlevel 1 (
+    color C
+    echo [38;5;230m[!] Invalid email format: missing "@"
+    pause
+    goto menu
+)
+
+:: Extraction du domaine
+for /f "tokens=2 delims=@" %%a in ("%email%") do set "domain=%%a"
+
+:: Vérifie que le domaine contient un point
+echo %domain% | findstr "\." >nul
+if errorlevel 1 (
+    color C
+    echo [38;5;230m[!] Invalid email format: domain missing "."
+    pause
+    goto menu
+)
+
+:: MX Lookup
+echo [✓] Email syntax is valid.
+echo.
+echo [*] Checking MX records for domain: %domain%
+nslookup -type=mx %domain% > "%TEMP%\mxcheck.txt" 2>nul
+
+findstr /i "mail exchanger" "%TEMP%\mxcheck.txt" >nul
+if errorlevel 1 (
+    color C
+    echo [!] No MX record found. Email domain might not receive emails.
+) else (
+    color A
+    echo [✓] MX record found. Domain is valid.
+)
+
+del "%TEMP%\mxcheck.txt"
+echo.
+pause
+goto menu
+
+:phone_validator
+cls
+color D
+echo.
+echo [38;5;202m╔══════════════════════════════════════════════════════╗
+echo [38;5;202m║               Phone Number Validator                 ║
+echo [38;5;202m╚══════════════════════════════════════════════════════╝
+echo.
+
+set /p phone=Enter the phone number with country code (ex: +33612345678) ^>
+echo.
+echo [38;5;230m[*] Validating phone number and retrieving info...
+echo.
+
+:: Définis ta clé API ici :
+set "apikey=num_live_wE7rNOF0rpFnFuvtyd6Am13KS5IAm5wuIqS4iGmU"
+
+:: Fichier temporaire pour stocker la réponse JSON
+set "json_file=%TEMP%\phone.json"
+
+:: Requête API
+curl -s -H "apikey: %apikey%" "https://api.numlookupapi.com/v1/validate/%phone%" > "%json_file%"
+
+:: Vérifie si le fichier a été rempli
+findstr /i "valid" "%json_file%" >nul
+if errorlevel 1 (
+    echo [38;5;196m[!] Invalid number or no route found.
+    echo.
+    type "%json_file%"
+    pause
+    goto menu
+)
+
+:: Affiche les infos principales
+echo [38;5;40m[✓] Number is valid!
+echo.
+echo [38;5;230mExtracted details:
+echo ---------------------------------------------------
+findstr /i /c:"\"valid\"" /c:"\"local_format\"" /c:"\"international_format\"" /c:"\"country_code\"" /c:"\"country_name\"" /c:"\"location\"" /c:"\"carrier\"" /c:"\"line_type\"" "%json_file%"
+echo ---------------------------------------------------
+echo.
+pause
+goto menu
+
+:ip_history
+cls
+color D
+echo.
+echo  [38;5;202m╔══════════════════════════════════════════════════════╗
+echo  [38;5;202m║                  IP History Lookup                   ║
+echo  [38;5;202m╚══════════════════════════════════════════════════════╝
+echo.
+set /p ip_target=Enter an IP address or domain name ^>
+
+echo.
+echo [38;5;230m[*] Gathering historical information for %ip_target%...
+echo.
+
+:: Utilisation de l’API ViewDNS pour l'historique IP/hostname
+start https://viewdns.info/iphistory/?ip=%ip_target%
+
+echo.
+echo [38;5;230mYou will be redirected to the results page on ViewDNS.info
+echo.
+pause
+goto menu
+
+:username_leak
+cls
+color D
+echo.
+echo  [38;5;202m╔════════════════════════════════════════════════════╗
+echo  [38;5;202m║              Username Leak Checker                ║
+echo  [38;5;202m╚════════════════════════════════════════════════════╝
+echo.
+set /p leak_user=Enter a username to check for leaks ^>
+
+echo.
+echo [38;5;230mOpening breach data search for "%leak_user%"...
+echo.
+
+start https://dehashed.com/search?query=%leak_user%
+start https://intelx.io/?s=%leak_user%
+start https://leakpeek.com/#%leak_user%
+
+echo.
+echo [38;5;230mSites opened:
+echo  - Dehashed
+echo  - IntelX
+echo  - Leakpeek
+echo.
+pause
+goto menu
+
+:leaked_password
+cls
+color D
+echo.
+echo [38;5;202m╔══════════════════════════════════════════════════════╗
+echo [38;5;202m║           Leaked Password Strength Checker           ║
+echo [38;5;202m╚══════════════════════════════════════════════════════╝
+echo.
+
+set /p pwd=Enter the password to check ^>
+
+:: Create temporary PowerShell script to hash the password
+set "ps_script=%TEMP%\hash_pw.ps1"
+> "%ps_script%" echo $sha1 = [System.Security.Cryptography.SHA1]::Create()
+>> "%ps_script%" echo $bytes = [System.Text.Encoding]::UTF8.GetBytes("%pwd%")
+>> "%ps_script%" echo $hash = $sha1.ComputeHash($bytes)
+>> "%ps_script%" echo $hashString = [BitConverter]::ToString($hash) -replace "-", ""
+>> "%ps_script%" echo $hashString.ToUpper()
+
+:: Run PowerShell script and get hash
+for /f %%H in ('powershell -ExecutionPolicy Bypass -File "%ps_script%"') do set "fullhash=%%H"
+
+:: Split the hash
+set "prefix=%fullhash:~0,5%"
+set "suffix=%fullhash:~5%"
+
+:: Query the HaveIBeenPwned API
+curl -s "https://api.pwnedpasswords.com/range/%prefix%" > "%TEMP%\pw_leaks.txt"
+
+:: Search for the suffix in the result
+findstr /i "%suffix%" "%TEMP%\pw_leaks.txt" >nul
+if %errorlevel%==0 (
+    for /f "tokens=2 delims=:" %%i in ('findstr /i "%suffix%" "%TEMP%\pw_leaks.txt"') do (
+        echo.
+        echo [38;5;196m[!] This password has been leaked at least %%i times!
+        echo.
+    )
+) else (
+    echo.
+    echo [38;5;10m[✓] This password was NOT found in any known breaches.
+    echo.
+)
+
+:: Cleanup
+del "%ps_script%" >nul 2>&1
+del "%TEMP%\pw_leaks.txt" >nul 2>&1
+pause
+goto menu
+
+:rainbow_credits
+cls
+color E
+echo.
+echo [38;5;226m╔══════════════════════════════════════════════════════════════════════╗
+echo [38;5;226m║                          Saturne - Crédits                           ║
+echo [38;5;226m╚══════════════════════════════════════════════════════════════════════╝
+echo.
+
+setlocal enabledelayedexpansion
+set count=1
+
+:: Liste des messages à afficher
+set "line[1]=Merci d'utiliser Saturne - l'outil OSINT signé Ehqie."
+set "line[2]=Créé avec passion, rigueur, et ligne par ligne."
+set "line[3]=Un outil pensé pour les passionnés d'investigation."
+set "line[4]=Chaque fonctionnalité a été pensée pour être utile."
+set "line[5]=Ehqie, un nom que tu n'oublieras pas."
+set "line[6]=L'OSINT accessible à tous, sans compromis."
+set "line[7]=Défie le web avec précision."
+set "line[8]=Saturne, ton 6ème sens numérique."
+set "line[9]=Un projet né de l'envie de comprendre et décortiquer."
+set "line[10]=Ehqie, architecte digital de l'ombre."
+set "line[11]=Exploration, Révélation, Automatisation."
+set "line[12]=100% Batch. 100% cerveau. 0% blabla."
+set "line[13]=La puissance est entre tes mains."
+set "line[14]=Merci à ceux qui testent, remontent, améliorent."
+set "line[15]=Si tu lis ça, t’es officiellement un vrai."
+set "line[16]=Un projet vivant. En perpétuelle évolution."
+set "line[17]=Entre les lignes, la vérité se cache."
+set "line[18]=Chaque option est un outil, chaque outil une arme."
+set "line[19]=Ehqie is watching you…"
+set "line[20]=#MadeWithLoveAndBatch"
+
+:: Générer des lignes supplémentaires automatiques
+for /L %%i in (21,1,100) do (
+    set "line[%%i]=Line %%i powered by Ehqie. Saturne never sleeps."
+)
+
+:: Affichage avec arc-en-ciel dynamique
+for /L %%i in (1,1,100) do (
+    set /a "hue=%%i*360/100"
+    set /a "colorCode=16 + (%%i*6) %% 200"
+    call :color_line !colorCode! "!line[%%i]!"
+    timeout /t 2 >nul
+)
+
+echo.
+echo [38;5;226m══════════════════════ END OF CREDITS ══════════════════════
+echo.
+pause
+goto menu
+
+:color_line
+:: %1 = color code 16-231
+:: %2 = message
+echo [38;5;%1m%2
+exit /b
+
+
+:not_ready
+cls
+color 4
+echo.
+echo     The selected option is not yet available.
+echo.
+echo    It will be added in a future update of Saturne.
+echo.
+pause
+goto menu
+
+
+:banner
+echo.
+echo.
+echo                      [38;5;214m▄████████    ▄████████     ███     ███    █▄     ▄████████ ███▄▄▄▄      ▄████████ 
+echo                     [38;5;220m███    ███   ███    ███ ▀█████████▄ ███    ███   ███    ███ ███▀▀▀██▄   ███    ███ 
+echo                     [38;5;221m███    █▀    ███    ███    ▀███▀▀██ ███    ███   ███    ███ ███   ███   ███    █▀  
+echo                     [38;5;222m███          ███    ███     ███   ▀ ███    ███  ▄███▄▄▄▄██▀ ███   ███  ▄███▄▄▄     
+echo                   [38;5;226m▀███████████ ▀███████████     ███     ███    ███ ▀▀███▀▀▀▀▀   ███   ███ ▀▀███▀▀▀     
+echo                            [38;5;227m███   ███    ███     ███     ███    ███ ▀███████████ ███   ███   ███    █▄  
+echo                      [38;5;228m▄█    ███   ███    ███     ███     ███    ███   ███    ███ ███   ███   ███    ███ 
+echo                    [38;5;229m▄████████▀    ███    █▀     ▄████▀   ████████▀    ███    ███  ▀█   █▀    ██████████ 
+echo                                                                      [38;5;230m███    ███                        
+echo.
+echo.
