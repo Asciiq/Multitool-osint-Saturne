@@ -1,0 +1,56 @@
+# Saturne OSINT Framework
+
+Saturne is a powerful and fully-featured **OSINT (Open-Source Intelligence)** toolkit developed in pure Windows **Batch scripting**. It is designed for security researchers, analysts, and enthusiasts who want a centralized, offline-ready toolbox to perform reconnaissance and information gathering from publicly available sources.
+
+## 🛰️ Features
+
+Saturne includes a wide range of tools covering most OSINT needs:
+
+- 🔍 **Username Lookup** (over 10 trusted platforms including WhatMyName, Namecheckr)
+- 📧 **Email Analysis** (leak check, syntax validation, domain reputation)
+- 🌍 **IP Lookup & GeoIP Tools**
+- 🧠 **Website Analysis** (headers, HTML source, metadata, robots.txt)
+- 🔐 **SSL Certificate Checker**
+- 📁 **Metadata & PDF Info Extractors**
+- 📜 **WHOIS / DNS / Reverse IP / Subdomain Scanner**
+- 🕵️ **Wayback Machine Scanner**
+- 🔍 **Phone Number Validation**
+- 🧾 **DOX Generator (Structured Form)**
+- 📶 **Port & IP Scanner (via PowerShell)**
+- 🔓 **Leaked Password Strength Checker**
+- 🌈 **Rainbow Animated Credits**
+
+> All modules are accessible via a simple interactive terminal menu. Every tool is self-contained, clean, and does not require Python or additional installations (unless noted).
+
+## 🔧 Requirements
+
+- Windows 10 / 11
+- Internet connection (for most queries)
+- PowerShell enabled (used for specific scans)
+
+## 📂 Structure
+
+- `/files`: All scripts and modules
+- `/output`: Where generated reports (like DOX sheets) are saved
+- `Saturne.bat`: Main launcher
+
+## 🛡️ Legal & Ethical Notice
+
+Saturne is intended for **educational and research purposes only**.
+
+- You are **not allowed** to use this tool for illegal activities, harassment, doxxing, or any malicious intent.
+- The developer assumes **no responsibility** for misuse or consequences arising from the usage of this tool.
+- This project is **open-source** and provided **"as is"**, without any warranty.
+
+By using Saturne, you agree to act responsibly and respect applicable laws.
+
+## 🔓 License
+
+This project is licensed under the **MIT License**.
+
+## 🤖 Author
+
+Developed by **Ehqie** — cybersecurity enthusiast and OSINT tool creator.  
+Feel free to contribute, fork, or suggest new ideas.
+
+---
